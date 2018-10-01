@@ -1,7 +1,13 @@
 <hr>
 
 @if (auth()->check())
-    <form class="form" action="#" method="post">
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <form class="form" action="{{ route('comment.store') }}" method="post">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
 
