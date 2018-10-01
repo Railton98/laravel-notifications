@@ -8,6 +8,16 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    private $post;
+
+    /**
+     * Post Constructor
+     */
+    public function __construct(Post $post)
+    {
+        $this->post = $post;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $posts = $this->post->paginate();
 
         return view('posts.index', compact('posts'));
     }
@@ -49,7 +59,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->post->find($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
