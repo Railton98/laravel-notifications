@@ -1,0 +1,35 @@
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+  # MySQL Data
+  notifications-mysql-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  db:
+    image: mysql:5.7
+    container_name: notifications-db
+    volumes:
+      - notifications-db-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=notifications
+      - MYSQL_DATABASE=notifications
+      - MYSQL_USER=notifications
+      - MYSQL_PASSWORD=notifications
+  # PHP (with Nginx)
+  app:
+    image: ambientum/php:7.2-nginx
+    container_name: notifications-app
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8080:8080"
+    links:
+      - db
