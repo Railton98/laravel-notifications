@@ -9,9 +9,7 @@ use App\Models\Comment;
 class Post extends Model
 {
     protected $fillable = [
-        'user_id',
-        'title',
-        'body',
+        'user_id', 'title', 'body',
     ];
 
     public function comments()
