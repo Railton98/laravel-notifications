@@ -36,3 +36,16 @@
 @else
     <p>É necessário estar <b>Autenticado</b> para fazer comentários. Clique <a class="btn btn-default" href="{{ route('login') }}">Aqui</a> para fazer login! </p>
 @endif
+
+<hr>
+<h3>Comentários ({{ $post->comments->count() }})</h3>
+@forelse ($post->comments as $comment)
+    <p>
+        <b>{{ $comment->user->name }}</b> comentou:
+        <b>{{ $comment->title }}</b> - {{ $comment->body }}
+    </p>
+@empty
+    <span class="alert alert-dark">
+        Este post ainda não possui Comentários
+    </span>
+@endforelse
