@@ -16,5 +16,8 @@ export default {
                         context.commit('LOAD_NOTIFICATIONS', response.data.notifications)
                     });
         },
+        markAsRead (context, params) {
+            axios.put('/notification-read', params);
+        },
     }
 }
