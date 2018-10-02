@@ -22,22 +22,11 @@
 <script>
     export default {
         created() {
-            this.loadNotifications()
+            this.$store.dispatch('loadNotifications')
         },
         computed: {
             notifications() {
-                return this.notificationsItems;
-            }
-        },
-        data() {
-            return {
-                notificationsItems: []
-            }
-        },
-        methods: {
-            loadNotifications() {
-                axios.get('/notifications')
-                        .then(response => this.notificationsItems = response.data.notifications);
+                return this.$store.state.notifications.items;
             }
         }
     }
