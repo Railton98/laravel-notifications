@@ -23,5 +23,6 @@ Route::resource('posts', 'Posts\PostController');
 Route::post('comment', 'Posts\CommentController@store')->name('comment.store');
 // Route::resource('posts.comments', 'Posts\CommentController');
 
+Route::put('notification-all-read', 'NotificationController@markAllAsRead');
 Route::put('notification-read', 'NotificationController@markAsRead');
 Route::get('notifications', 'NotificationController@notifications')->name('notifications');

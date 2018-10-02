@@ -30,4 +30,9 @@ class NotificationController extends Controller
             $notification->markAsRead();
     }
 
+    public function markAllAsRead(Request $request)
+    {
+        $request->user()->unreadNotifications->markAsRead();
+    }
+
 }
